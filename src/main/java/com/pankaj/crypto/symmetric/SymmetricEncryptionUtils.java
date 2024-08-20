@@ -35,7 +35,8 @@ public class SymmetricEncryptionUtils {
      * The createInitializationVector method in the SymmetricEncryptionUtils class is responsible for generating a random
      * Initialization Vector (IV) for use in cryptographic operations. An IV is a fixed-size input to a cryptographic
      * primitive that is typically required to be random or pseudorandom.
-     * @return
+     * <p>
+     * We are using CBC {@link #AES_CIPHER_ALGO} therefore need of initialization vector.
      */
     public static byte[] createInitializationVector(){
 
@@ -60,6 +61,9 @@ public class SymmetricEncryptionUtils {
         return cipher.doFinal(plainText.getBytes());
     }
 
+    /**
+     * @param initializationVector Same IV is needed that was used for encryption
+     */
     public static String performAESDecryption(byte[] cipherText, SecretKey secretKey, byte[] initializationVector)
             throws Exception {
         Cipher cipher =  Cipher.getInstance(AES_CIPHER_ALGO);
