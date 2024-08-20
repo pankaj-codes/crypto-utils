@@ -28,6 +28,8 @@
             <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!--        This dependency is needed explicitly after Java 11 for using DatatypeConverter-->
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
