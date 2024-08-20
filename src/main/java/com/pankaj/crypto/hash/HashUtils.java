@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class HashUtils {
 
     private static final String SHA2_ALGO = "SHA-256";
@@ -28,5 +30,13 @@ public class HashUtils {
 
         MessageDigest messageDigest = MessageDigest.getInstance(SHA2_ALGO);
         return messageDigest.digest(valueToHash);
+    }
+
+    public static String hashPassword(String password){
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public static boolean verifyPassword(String password, String hashPassword){
+        return BCrypt.checkpw(password, hashPassword);
     }
 }

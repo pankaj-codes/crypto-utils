@@ -28,4 +28,15 @@ class HashUtilsTest {
         byte[] hash2 = HashUtils.createSHA2Hash(valueToHash, salt);
         assertEquals(DatatypeConverter.printHexBinary(hash), DatatypeConverter.printHexBinary(hash2));
     }
+
+    @Test
+    void testPasswordRoutine(){
+        String secretPhrase = "correct horse battery staple";
+        String passwordHash = HashUtils.hashPassword(secretPhrase);
+        //$2a$10$4l2PNnchFqJC/Pf2KN1/3eJhuTESvqQJMJR4JY5sdFqqeMjXlSXvK
+        // $10 tells that there were 10 rounds of BCrypt hashing
+        System.out.println(passwordHash);
+        assertNotNull(passwordHash);
+        assertTrue(HashUtils.verifyPassword(secretPhrase, passwordHash));
+    }
 }
