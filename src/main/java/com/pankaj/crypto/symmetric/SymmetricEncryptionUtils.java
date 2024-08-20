@@ -57,6 +57,9 @@ public class SymmetricEncryptionUtils {
     public static byte[] performAESEncryption(String plainText, SecretKey secretKey, byte[] initializationVector)
             throws Exception {
         Cipher cipher = Cipher.getInstance(AES_CIPHER_ALGO);
+
+        // By creating an IvParameterSpec object, the code ensures that the cryptographic operations can use the specified IV,
+        // which is essential for modes of operation like CBC (Cipher Block Chaining) that require an IV to function correctly.
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
         return cipher.doFinal(plainText.getBytes());
@@ -65,6 +68,9 @@ public class SymmetricEncryptionUtils {
     public static String performAESDecryption(byte[] cipherText, SecretKey secretKey, byte[] initializationVector)
             throws Exception {
         Cipher cipher =  Cipher.getInstance(AES_CIPHER_ALGO);
+
+        // By creating an IvParameterSpec object, the code ensures that the cryptographic operations can use the specified IV,
+        // which is essential for modes of operation like CBC (Cipher Block Chaining) that require an IV to function correctly.
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
         cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
         byte[] result = cipher.doFinal(cipherText);
