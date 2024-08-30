@@ -23,8 +23,9 @@ public class SymmetricEncryptionUtils {
 
         SecureRandom secureRandom = new SecureRandom();
 
-        //Key generator using the algo we passed.
-        KeyGenerator keyGenerator = KeyGenerator.getInstance(AES);
+        // Key generator using the algo we passed.
+        // KeyGenerator keyGenerator = KeyGenerator.getInstance(AES);
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("BLOWFISH");
 
         //Initialize key with the 256 key size and secure random for seeding.
         keyGenerator.init(256, secureRandom);
