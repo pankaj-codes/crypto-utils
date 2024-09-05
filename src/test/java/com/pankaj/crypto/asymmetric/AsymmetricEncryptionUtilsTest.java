@@ -22,10 +22,10 @@ class AsymmetricEncryptionUtilsTest {
     void testRSACryptoRoutine() throws Exception{
         KeyPair keyPair = AsymmetricEncryptionUtils.generateRSAKeyPair();
         String plainText = "This is going to hide in plain sight";
-        byte[] cipherText = AsymmetricEncryptionUtils.performRSAEncryption(plainText, keyPair.getPrivate());
+        byte[] cipherText = AsymmetricEncryptionUtils.performRSAEncryption(plainText, keyPair.getPublic());
         assertNotNull(cipherText);
         System.out.println(DatatypeConverter.printHexBinary(cipherText));
-        String decryptedText = AsymmetricEncryptionUtils.performRSADecryption(cipherText, keyPair.getPublic());
+        String decryptedText = AsymmetricEncryptionUtils.performRSADecryption(cipherText, keyPair.getPrivate());
         assertEquals(plainText, decryptedText);
     }
 }
